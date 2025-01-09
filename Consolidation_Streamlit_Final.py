@@ -83,7 +83,7 @@ group_field = 'SHORT_POSTCODE' if group_method == 'Post Code Level' else 'NAME'
 # Month selection
 all_months = ['Custom', 'All']
 all_months += [f'{month} 2023' for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
-all_months += [f'{month} 2024' for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']]
+all_months += [f'{month} 2024' for month in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov']]
 selected_month = st.sidebar.selectbox(
     "Select Month for Consolidation",
     options=all_months,
@@ -94,7 +94,7 @@ selected_month = st.sidebar.selectbox(
 if selected_month == 'Custom':
     # Create date objects for the first day of 2023 and last day of August 2024
     min_date = datetime.date(2023, 1, 1)
-    max_date = datetime.date(2024, 12, 31)
+    max_date = datetime.date(2024, 11, 30)
     
     # Use date_input with min and max values set
     start_date = st.sidebar.date_input("Start date", value=min_date, min_value=min_date, max_value=max_date)
@@ -121,8 +121,8 @@ else:
     start_date = pd.Timestamp(year=year, month=selected_month_number, day=1)
     
     # Set end_date to the last day of the selected month
-    if year == 2024 and selected_month_number == 12:
-        end_date = pd.Timestamp(year=2024, month=12, day=31, hour=23, minute=59, second=59)
+    if year == 2024 and selected_month_number == 11:
+        end_date = pd.Timestamp(year=2024, month=11, day=30, hour=23, minute=59, second=59)
     elif selected_month_number == 12:
         end_date = pd.Timestamp(year=year, month=12, day=31, hour=23, minute=59, second=59)
     else:
